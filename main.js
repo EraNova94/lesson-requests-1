@@ -68,3 +68,15 @@
 // resolve - callback dlya uspeshnogo keisa - vyzyvaetsya vnutri promisa, prinimaet dannye, kotorye nujno vernut
 //reject - callback dlya peredachi oshibki - prinimaet samu oshibku i vozvrashaet ee
 // async await - konstruciya, kotoraya pri otpravke zaprosov (v sluchae esli nujno dojdatsya vypolneniya zaprosa i tolko potom chitat dalneishi kod)
+
+/*
+Post- dobavlenie dannyh
+Put- polnaya zamena dannyh
+Patch- chastichnaya zamena dannyh
+Delete-udalenie
+Get- polucheniye
+*/
+/*
+komanda dlya zapuska JSON-SERVER
+json-server -w db.json -p 8000
+*/
