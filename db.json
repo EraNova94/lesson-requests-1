@@ -1,3 +1,76 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "todo": "Erkinbek",
+      "id": 1
+    },
+    {
+      "todo": "buy a milk",
+      "id": 2
+    },
+    {
+      "todo": "what to do?",
+      "id": 3
+    },
+    {
+      "todo": "123",
+      "id": 4
+    },
+    {
+      "todo": "555",
+      "id": 5
+    },
+    {
+      "todo": "123",
+      "id": 6
+    },
+    {
+      "todo": "Erkinbek Bakai",
+      "id": 7
+    },
+    {
+      "todo": "123",
+      "id": 8
+    },
+    {
+      "todo": "123",
+      "id": 9
+    },
+    {
+      "todo": "",
+      "id": 10
+    },
+    {
+      "todo": "",
+      "id": 11
+    },
+    {
+      "todo": "",
+      "id": 12
+    },
+    {
+      "todo": "",
+      "id": 13
+    },
+    {
+      "todo": "",
+      "id": 14
+    },
+    {
+      "todo": "buy milk",
+      "id": 15
+    },
+    {
+      "todo": "123",
+      "id": 16
+    },
+    {
+      "todo": "",
+      "id": 17
+    },
+    {
+      "todo": "",
+      "id": 18
+    }
+  ]
 }
