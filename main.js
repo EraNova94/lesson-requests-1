@@ -87,19 +87,59 @@ CRUD - Create(POST-request) Read(GET-request) Update(PUT/PATCH-request) Delete(D
 
 const API = "http://localhost:8000/todos";
 
+// ! Create
+//? получаем нужные для добавления элементы
 let inpAdd = document.getElementById("inp-add");
 let btnAdd = document.getElementById("btn-add");
 // console.log(inpAdd, btnAdd);
+
+//? navesili sobytie na knopku "sohranit"
 btnAdd.addEventListener("click", function () {
+  // ? sobiraem ob'ekt dlya dobavleniya v db.json
   let newTodo = {
     todo: inpAdd.value,
   };
   // console.log(newTodo);
-  fetch(API, {
+
+  // ? proverka na zapolnennost inputa i ostanavlivaem kod s pomosh'yu return, chtoby post zapros ne vupolnyalsya
+  if (newTodo.todo.trim() === ""){
+    alert ("zapolnite polya!");
+    return;
+    }
+  await fetch(API, {
     method: "POST",
-    body: JSON.stringify(newTodo),
+    body: JSON.stringify(newTodo), //? ukazyvaem chto imenno nujno zapostit
     headers: {
       "Content-type": "application/json; charset = utf-8",
-    },
+    }, //? kodirovka
   });
+  //? ochishaem input posle dobavleniya 
+  inpAdd.value = "";
+  // ? chtob dobavlennyi task srazu otabrazilsya v liste vyzyvaem funciyu, kotoraya vypolnyaet otobrajaenie
+  getTodos();
 });
+
+// ! Read
+// ? poluchaem elemt, chtoby v nem otobrazit vse taski 
+let list = document.getElementById("list");
+// ? proveryaem v konsoli, chtob ubeditsya, chto v peremennoi
+//? list seichas NE pusto
+console.log(list);
+// ? funkciya dlya polucheniya vseh taskov i otobrajeniya ih v div#list
+// ?assync await nujen zdes', chtob pri otpravke zaprosa my snachala poluchili dannye i tolko potom zapisali vse v peremennuyu response, inache (esli my NE dojdemsya) tuda zapishetsya pending (sostoyanie promisa, kotoryi eshe ne vypolnen)
+async function getTodos() {
+  let response = await fetch(API) // ? esli ne ukazat metod zaprosa, to po umolchaniyu eto GET zapros
+    .then(res => res.json()) //? perevodim vse v json format
+    .catch(err => console.log(err)); //? otlovili oshibku 
+  console.log(response);
+  // ? ochishaem div#list, chtob spisok taskov korrektno otobrajalsya i ne hranil tam predydushie html-elementy so starymi dannymi
+  list.innerHTML = "";
+  // ? perebiraem poluchennyi iz db.json massiv i dlya kajdogo ob'ekta iz etogo massiva sozdaem div i zadaem emu soderjimoe cherez metod innerHTML, kajdyi sozdannyi element appendim v div#list 
+  response.forEach(item => {
+    let newElem = document.createElement("div");
+    newElem.innerHTML = `<span>${item.todo}</span>`;
+    list.append(newElem);
+  });
+}
+// vyzyvaem funkciyu, chtob kak tolko otkroetsya stranica chto-to bylo otobrajeno
+getTodos();
